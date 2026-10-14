@@ -93,6 +93,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 }
 @media(max-width:520px){.tl div{grid-template-columns:1fr;gap:2px}.cols3{grid-template-columns:1fr}.donate dl{grid-template-columns:1fr;gap:0}.donate dd{margin-bottom:10px}body{font-size:16px}}
 dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}dialog::backdrop{background:rgba(10,14,40,.85)}#dimg{max-height:92vh;max-width:94vw;border-radius:10px;background:#fff}
+.ways{padding:70px 0 20px}.ways .head{text-align:center;max-width:36em;margin:0 auto 34px}
+.ways .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.way{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--gold);border-radius:var(--r);padding:28px;text-decoration:none;color:var(--ink);transition:.2s}
+.way:hover{transform:translateY(-4px);box-shadow:0 22px 40px -24px rgba(18,28,74,.45)}
+.way .n{font-family:Fraunces,serif;font-weight:700;font-size:1.1rem;color:var(--gold-d);margin-bottom:6px}
+.way h3{margin-bottom:.4em}.way p{margin:0 0 16px;color:var(--mut)}
+.way .go{margin-top:auto;font-weight:600;color:var(--navy)}
+@media(max-width:940px){.ways .grid3{grid-template-columns:1fr}.ways{padding:52px 0 10px}}
 </style>
 </head>
 <body>
@@ -141,6 +149,14 @@ dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
 <div><b>Philosophy</b><span>Late Mr. F. C. Sondhi was a spiritually minded philanthropist and self made businessman. He believed in treating all human beings as equal, irrespective of caste and creed. He also believed in a universal religion without dogma. He was also a great believer in action, which was exemplified by his life work. That is why Trust was started.</span></div>
 </div></div>
 </div></section>
+
+<section class="ways" id="ways"><div class="wrap">
+<div class="head rv"><div class="eyebrow">Get involved</div><h2>Three ways to make a difference</h2></div>
+<div class="grid3">
+<a class="way rv" href="#scholarships"><div class="n">01</div><h3>Scholarships</h3><p>From Class 9 through M.A. Every application is verified by a visit to the student's home. Sponsor a student from ₹1,500 a year.</p><span class="go">See scholarships &rarr;</span></a>
+<a class="way rv" href="#grants"><div class="n">02</div><h3>Grants</h3><p>₹850 a month, or ₹1,000 for special needs, for elderly and widowed people, delivered at the doorstep.</p><span class="go">See grants &rarr;</span></a>
+<a class="way rv" href="#donate"><div class="n">03</div><h3>Give in someone's name</h3><p>Dedicate a scholarship or grant in the name of a loved one. All donations are exempt under Section 80G.</p><span class="go">How to donate &rarr;</span></a>
+</div></div></section>
 
 <section id="scholarships" class="alt"><div class="wrap">
 <div class="eyebrow">Scholarships</div>
