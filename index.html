@@ -281,7 +281,7 @@ document.querySelectorAll('.rv').forEach(e=>io.observe(e));
 const dl=document.getElementById('dlg');document.querySelectorAll('[data-zoom]').forEach(e=>e.onclick=()=>{document.getElementById('dimg').src=document.querySelector('img[data-zoom]').src;dl.showModal()});dl.onclick=()=>dl.close();
 document.getElementById('cp').onclick=function(){const s='F.C. Sondhi Charitable Trust\nUnion Bank of India, Basti Nau, Jalandhar\nA/c: '+document.getElementById('acc').textContent+'\nIFSC: '+document.getElementById('ifsc').textContent;(navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(()=>this.textContent='Copied',()=>this.textContent='Copy not available');setTimeout(()=>this.textContent='Copy account details',2000)};
 </script>
-<script src="assets/logo.js"></script>
+<script src="assets/logo.js?v=phone-removed"></script>
 <script src="assets/collage.js"></script>
 <script src="assets/stage.js"></script>
 <script src="assets/stall.js"></script>
