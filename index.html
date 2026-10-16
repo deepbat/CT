@@ -85,7 +85,8 @@ tbody tr:nth-child(even){background:#fdfaf2}
 .contact .card h3{font-size:1.05rem;margin-bottom:6px}
 footer{background:var(--navy-d);color:#c9cdea;padding:34px 0;font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-#top{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:1.3rem;cursor:pointer;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+#top{position:fixed;right:18px;bottom:18px;z-index:40;width:46px;height:46px;border-radius:50%;border:1.5px solid transparent;background:linear-gradient(rgba(10,12,30,.92),rgba(10,12,30,.92)) padding-box,linear-gradient(to right,#77530a,#ffd277,#77530a) border-box;color:var(--gold);font-size:1.25rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+#top:hover{transform:translateY(-2px)}
 #top.on{opacity:1;pointer-events:auto}
 .js .rv{opacity:0;transform:translateY(22px);transition:.7s}.js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
@@ -294,9 +295,10 @@ dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
 const nav=document.getElementById('nav'),mb=document.querySelector('.menu');
 mb.onclick=()=>{const o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
 nav.querySelectorAll('a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
-const t=document.getElementById('top');addEventListener('scroll',()=>t.classList.toggle('on',scrollY>600),{passive:true});
-const framed=window.parent!==window;
-t.onclick=()=>{if(framed){window.parent.postMessage({type:'scrollTo',y:0},'*')}else{scrollTo({top:0,behavior:'smooth'})}};
+const t=document.getElementById('top'),topOn=()=>t.classList.toggle('on',scrollY>600);
+addEventListener('scroll',topOn,{passive:true});topOn();
+const framed=window.self!==window.top;
+t.onclick=()=>{if(framed){window.parent.postMessage({type:'scrollTo',y:0},'*')}else{scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}};
 if(framed){
  // Wix supplies the visible back-to-top control outside this tall iframe.
  t.style.display='none';
