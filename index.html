@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1b2a6b;--navy-d:#121c4a;--gold:#f2b01e;--gold-d:#b57f00;--cream:#fbf7ee;--paper:#fff;--ink:#222638;--mut:#5b6075;--line:#e6dfcd;--r:18px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:136px}
 body{margin:0;font:17px/1.65 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}a{color:var(--navy)}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;color:var(--navy-d);margin:0 0 .5em}
@@ -22,10 +22,15 @@ h1{font-size:clamp(2.3rem,6vw,4.1rem);font-weight:700}h2{font-size:clamp(1.8rem,
 section{padding:84px 0}
 .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold-d);margin-bottom:12px}
 header{position:sticky;top:0;z-index:50;background:rgba(251,247,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-.brand img{height:52px;width:auto;image-rendering:auto}
-nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
-nav a{position:relative;display:flex;align-items:center;justify-content:center;height:38px;padding:0 15px;border-radius:10px;overflow:hidden;text-decoration:none;font-size:.84rem;font-weight:600;white-space:nowrap;color:#ffd277;background:linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);background-size:250%;background-position:left;transition:background-position 1s,transform .2s}
+.bar{display:flex;align-items:center;justify-content:space-between;min-height:118px;gap:20px}
+.brand{display:flex;align-items:center;gap:15px;text-decoration:none;flex:0 1 auto;min-width:0}
+.emblem{--s:96px;flex:0 0 auto;width:var(--s);height:var(--s);border-radius:50%;overflow:hidden;box-shadow:0 2px 10px rgba(18,28,74,.16);background:#fff}
+.emblem img{display:block;width:auto;height:calc(var(--s)*1.35054);max-width:none;margin:calc(var(--s)*-0.17204) 0 0 calc(var(--s)*-0.25161)}
+.btext{display:flex;flex-direction:column;min-width:0}
+.bname{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:1.32rem;line-height:1.12;color:var(--navy-d);white-space:nowrap}
+.baddr{font-size:.78rem;color:var(--mut);margin-top:3px;white-space:nowrap}
+nav ul{display:flex;flex-wrap:wrap;justify-content:flex-end;max-width:560px;gap:6px;list-style:none;margin:0;padding:0}
+nav a{position:relative;display:flex;align-items:center;justify-content:center;height:36px;padding:0 13px;border-radius:10px;overflow:hidden;text-decoration:none;font-size:.84rem;font-weight:600;white-space:nowrap;color:#ffd277;background:linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);background-size:250%;background-position:left;transition:background-position 1s,transform .2s}
 nav a::before{content:"";position:absolute;inset:1.5px;border-radius:8px;background:rgba(0,0,0,.842)}
 nav a span{position:relative;z-index:1}
 nav a:hover{background-position:right}
@@ -85,8 +90,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .js .rv{opacity:0;transform:translateY(22px);transition:.7s}.js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 @media(max-width:940px){
- .menu{display:block}
- nav{position:absolute;top:68px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--line);display:none;padding:10px 16px 18px}
+ html{scroll-padding-top:100px}
+ .bar{min-height:84px}
+ .emblem{--s:66px}
+ .brand{gap:11px}
+ .bname{font-size:1.04rem;white-space:normal}
+ .baddr{font-size:.72rem;white-space:normal}
+ .menu{display:block;flex:0 0 auto}
+ nav ul{max-width:none;justify-content:stretch}
+ nav{position:absolute;top:100%;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--line);display:none;padding:10px 16px 18px}
  nav.open{display:block}nav ul{flex-direction:column}nav ul{gap:8px}nav a{font-size:1rem;height:44px;justify-content:center}
  .hero .grid,.two{grid-template-columns:1fr;gap:34px}.hero .img{transform:none}
  .stats .row{grid-template-columns:repeat(2,1fr);row-gap:28px}
@@ -94,6 +106,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
  .upd article{grid-template-columns:1fr;gap:10px}
  section{padding:62px 0}
 }
+@media(max-width:520px){.baddr{display:none}.bname{font-size:.98rem}}
+@media(max-width:360px){.brand{gap:9px}.emblem{--s:64px}.bar{gap:8px}}
 @media(max-width:520px){.tl div{grid-template-columns:1fr;gap:2px}.cols3{grid-template-columns:1fr}.donate dl{grid-template-columns:1fr;gap:0}.donate dd{margin-bottom:10px}body{font-size:16px}}
 dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}dialog::backdrop{background:rgba(10,14,40,.85)}#dimg{max-height:92vh;max-width:94vw;border-radius:10px;background:#fff}
 .ways{padding:70px 0 20px}.ways .head{text-align:center;max-width:36em;margin:0 auto 34px}
@@ -110,10 +124,10 @@ dialog{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
 </head>
 <body>
 <header><div class="wrap bar">
-<a class="brand" href="#top-of-page"><img src="assets/2-logo-hd.png" width="700" height="157" alt="F. C. Sondhi Charitable Trust, Jalandhar"></a>
+<a class="brand" href="#top-of-page"><span class="emblem" aria-hidden="true"><img src="assets/2-logo-hd.png" alt="" width="2800" height="628"></span><span class="btext"><span class="bname">F. C. Sondhi Charitable Trust</span><span class="baddr">15 Adarsh Nagar, Jalandhar 144008</span></span></a>
 <button class="menu" aria-label="Menu" aria-expanded="false">&#9776;</button>
 <nav id="nav"><ul>
-<li><a href="#about"><span>About</span></a></li><li><a href="#scholarships"><span>Scholarships</span></a></li><li><a href="#grants"><span>Grants</span></a></li><li><a href="#donate"><span>Donate</span></a></li><li><a href="#ideas"><span>Ideas Exchange</span></a></li><li><a href="#reports"><span>Reports</span></a></li><li><a href="#updates"><span>Updates</span></a></li><li><a href="#contact"><span>Contact</span></a></li>
+<li><a href="#about"><span>About</span></a></li><li><a href="#scholarships"><span>Scholarships</span></a></li><li><a href="#grants"><span>Grants</span></a></li><li><a href="#donate"><span>Donate</span></a></li><li><a href="#ideas"><span>Ideas Exchange</span></a></li><li><a href="#reports"><span>Reports</span></a></li><li><a href="#updates"><span>Trust Activities &amp; Updates</span></a></li><li><a href="#contact"><span>Contact</span></a></li>
 </ul></nav></div></header>
 <main id="top-of-page">
 <section class="hero"><div class="wrap grid">
@@ -295,7 +309,7 @@ if(framed){
   if(!target)return;
   e.preventDefault();
   nav.classList.remove('open');mb.setAttribute('aria-expanded','false');
-  // Preserve the page's existing anchor clearance (78px scroll-padding).
+  // Preserve the page's existing anchor clearance (scroll-padding, sized to the taller header with emblem + name).
   // Fall back to the sticky header height if that clearance is removed.
   const padding=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
   const margin=parseFloat(getComputedStyle(target).scrollMarginTop)||0;
