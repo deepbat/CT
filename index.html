@@ -281,7 +281,30 @@ const nav=document.getElementById('nav'),mb=document.querySelector('.menu');
 mb.onclick=()=>{const o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
 nav.querySelectorAll('a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
 const t=document.getElementById('top');addEventListener('scroll',()=>t.classList.toggle('on',scrollY>600),{passive:true});
-t.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+const framed=window.parent!==window;
+t.onclick=()=>{if(framed){window.parent.postMessage({type:'scrollTo',y:0},'*')}else{scrollTo({top:0,behavior:'smooth'})}};
+if(framed){
+ // Wix supplies the visible back-to-top control outside this tall iframe.
+ t.style.display='none';
+ document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  const hash=a.getAttribute('href');
+  let id;try{id=decodeURIComponent(hash.slice(1))}catch(err){return}
+  const target=id?document.getElementById(id):document.documentElement;
+  if(!target)return;
+  e.preventDefault();
+  nav.classList.remove('open');mb.setAttribute('aria-expanded','false');
+  // Preserve the page's existing anchor clearance (78px scroll-padding).
+  // Fall back to the sticky header height if that clearance is removed.
+  const padding=parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0;
+  const margin=parseFloat(getComputedStyle(target).scrollMarginTop)||0;
+  const header=document.querySelector('header');
+  const clearance=padding||(header?header.getBoundingClientRect().height:0);
+  const y=hash==='#top-of-page'||hash==='#'?0:Math.max(0,target.getBoundingClientRect().top+window.scrollY-clearance-margin);
+  window.parent.postMessage({type:'scrollTo',y},'*');
+ });
+}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
 const dl=document.getElementById('dlg');document.querySelectorAll('[data-zoom]').forEach(e=>e.onclick=()=>{document.getElementById('dimg').src=document.querySelector('img[data-zoom]').src;dl.showModal()});dl.onclick=()=>dl.close();
